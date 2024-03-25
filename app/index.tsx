@@ -1,8 +1,14 @@
-import { Link } from "expo-router";
+import { Link, Redirect } from "expo-router";
 import { StyleSheet, View } from "react-native";
 import { Button } from "react-native-paper";
+import { useAppStore } from "store/app-store";
+import { useAccount } from "wagmi";
 
 const HomeScreen = () => {
+  const user = useAppStore((state) => state.user);
+  const { isConnected } = useAccount();
+
+  if (!user || !isConnected) return <Redirect href={"/register"} />;
   return (
     <View style={styles.container}>
       <Link href={"(protected)/add-medicine"} asChild>

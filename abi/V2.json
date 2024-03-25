@@ -1,0 +1,410 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "manufacturer",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "batchId",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "medicineName",
+        "type": "string"
+      }
+    ],
+    "name": "BatchAdded",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_batchId",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_medicineName",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_manufacturerName",
+        "type": "string"
+      }
+    ],
+    "name": "addBatch",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_batchId",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_temperature",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_humidity",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "_chemicalWeights",
+        "type": "uint256[]"
+      },
+      {
+        "internalType": "string[]",
+        "name": "_chemicalNames",
+        "type": "string[]"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_createdAt",
+        "type": "uint256"
+      }
+    ],
+    "name": "addSensorData",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "name": "batches",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "batchId",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "medicineName",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_manufacturerName",
+        "type": "string"
+      }
+    ],
+    "name": "getAllBatchDetailsOfManufacturer",
+    "outputs": [
+      {
+        "internalType": "string[]",
+        "name": "",
+        "type": "string[]"
+      },
+      {
+        "internalType": "string[]",
+        "name": "",
+        "type": "string[]"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "",
+        "type": "uint256[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAllMedicineNames",
+    "outputs": [
+      {
+        "internalType": "string[]",
+        "name": "",
+        "type": "string[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_medicineName",
+        "type": "string"
+      }
+    ],
+    "name": "getMedicineDetails",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "temperatureRangeMin",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "temperatureRangeMax",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "humidityRangeMin",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "humidityRangeMax",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string[]",
+        "name": "chemicalNames",
+        "type": "string[]"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "ratios",
+        "type": "uint256[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_batchId",
+        "type": "string"
+      }
+    ],
+    "name": "getSensorData",
+    "outputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "temperatures",
+        "type": "uint256[]"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "humidities",
+        "type": "uint256[]"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "createdAts",
+        "type": "uint256[]"
+      },
+      {
+        "internalType": "uint256[][]",
+        "name": "chemicalWeights",
+        "type": "uint256[][]"
+      },
+      {
+        "internalType": "string[][]",
+        "name": "chemicalNames",
+        "type": "string[][]"
+      },
+      {
+        "internalType": "string",
+        "name": "medicineName",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "manufacturerBatches",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "manufacturers",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "internalType": "bool",
+        "name": "isRegistered",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "medicineNames",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "name": "medicines",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "temperatureRangeMin",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "temperatureRangeMax",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "humidityRangeMin",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "humidityRangeMax",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_name",
+        "type": "string"
+      }
+    ],
+    "name": "registerManufacturer",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_name",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "_chemicalRatios",
+        "type": "uint256[]"
+      },
+      {
+        "internalType": "string[]",
+        "name": "_chemicalNames",
+        "type": "string[]"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_temperatureRangeMin",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_temperatureRangeMax",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_humidityRangeMin",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_humidityRangeMax",
+        "type": "uint256"
+      }
+    ],
+    "name": "registerMedicine",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]

@@ -43,7 +43,8 @@ const RootLayout = () => {
       <WagmiConfig config={wagmiConfig}>
         <View style={styles.container}>
           <Stack>
-            {/* <Stack.Screen name="(protected)" options={{ title: "Home" }} /> */}
+            <Stack.Screen name="index" options={{ title: "Home" }} />
+            <Stack.Screen name="register" options={{ title: "Register" }} />
           </Stack>
           <Web3Modal />
         </View>
