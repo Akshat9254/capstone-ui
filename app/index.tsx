@@ -11,16 +11,16 @@ const HomeScreen = () => {
   if (!user || !isConnected) return <Redirect href={"/register"} />;
   return (
     <View style={styles.container}>
-      <Link href={"(protected)/add-medicine"} asChild>
+      <Link href={"/add-medicine"} asChild>
         <Button mode={"contained-tonal"}>Add Medicine</Button>
       </Link>
-      <Link href={"(protected)/add-batch"} asChild>
+      <Link href={"/add-batch"} asChild>
         <Button mode={"contained-tonal"}>Add Batch</Button>
       </Link>
-      <Link href={"(protected)/all-batches"} asChild>
+      <Link href={"/all-batches"} asChild>
         <Button mode={"contained-tonal"}>All Batches</Button>
       </Link>
-      <Link href={"(protected)/qr-scan"} asChild>
+      <Link href={"/qr-scan"} asChild>
         <Button mode={"contained-tonal"}>QR Scan</Button>
       </Link>
     </View>
