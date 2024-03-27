@@ -11,7 +11,9 @@
       "@screens": ["screens/index"],
       "@abi": ["abi/*"],
       "@types/*": ["types/*"],
-      "@hooks": ["hooks/index"]
+      "@hooks": ["hooks/index"],
+      "@config": ["config/index"],
+      "@utils": ["utils/index"]
     }
   }
 }

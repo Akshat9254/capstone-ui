@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import { Button, DefaultTheme, TextInput } from "react-native-paper";
 import { Dropdown } from "react-native-element-dropdown";
-import { AddBatchRequest } from "../types/input";
 import { useAppStore } from "store/app-store";
 import { CustomSnackbar } from "@components";
 import abi from "../abi/V2.json";
 import { useContractRead, useContractWrite } from "wagmi";
+import { Redirect } from "expo-router";
+import { web3Config } from "@config";
 
-const manufacturerName = "man1";
-let batchNo = 1;
+let batchNo = 3;
 const AddBatchScreen = () => {
   const [medicineNames, setMedicineNames] = useState<
     { label: string; value: string }[]
@@ -22,12 +22,15 @@ const AddBatchScreen = () => {
     message: string;
   }>({ visible: false, message: "" });
 
+  if (!user) return <Redirect href={"/register"} />;
+  const manufacturerName = user.name;
+
   const handleCloseSnackbar = () =>
     setSnackbar({ visible: false, message: "" });
 
   const { isError, error } = useContractRead({
     abi,
-    address: "0xa44d5bd62503841fefaa94489a4569a6e5cca23e",
+    address: web3Config.address,
     functionName: "getAllMedicineNames",
     onSuccess(data: string[]) {
       setMedicineNames(data.map((item) => ({ label: item, value: item })));
@@ -43,7 +46,7 @@ const AddBatchScreen = () => {
     write: addBatch,
   } = useContractWrite({
     abi,
-    address: "0xa44d5bd62503841fefaa94489a4569a6e5cca23e",
+    address: web3Config.address,
     functionName: "addBatch",
     onSuccess: () => {
       setSnackbar({ visible: true, message: "batch added" });
@@ -73,7 +76,7 @@ const AddBatchScreen = () => {
     }
 
     addBatch({
-      args: [`b${batchNo++}`, medicine, manufacturerName],
+      args: [`b${batchNo++}`, medicine, manufacturerName, Date.now()],
     });
   };
   return (

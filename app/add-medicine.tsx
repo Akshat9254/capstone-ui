@@ -11,6 +11,7 @@ import {
   AddMedicineTemperatureInput,
   CustomSnackbar,
 } from "@components";
+import { web3Config } from "@config";
 
 const AddMedicineScreen = () => {
   const {
@@ -43,7 +44,7 @@ const AddMedicineScreen = () => {
     write: registerMedicine,
   } = useContractWrite({
     abi,
-    address: "0xa44d5bd62503841fefaa94489a4569a6e5cca23e",
+    address: web3Config.address,
     functionName: "registerMedicine",
     onSuccess: () => {
       setSnackbar({ visible: true, message: "medicine registered" });

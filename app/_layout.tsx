@@ -50,6 +50,10 @@ const RootLayout = () => {
               options={{ title: "Add Medicine" }}
             />
             <Stack.Screen name="add-batch" options={{ title: "Add Batch" }} />
+            <Stack.Screen
+              name="all-batches"
+              options={{ title: "All Batches" }}
+            />
           </Stack>
           <Web3Modal />
         </View>

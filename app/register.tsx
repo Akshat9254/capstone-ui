@@ -1,6 +1,5 @@
 import { W3mButton } from "@web3modal/wagmi-react-native";
 import { StyleSheet, View } from "react-native";
-// import { useAccount } from "wagmi";
 import { KeyboardAvoidingView, RegisterInput } from "@components";
 import { useAccount } from "wagmi";
 
