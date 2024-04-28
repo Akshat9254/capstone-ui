@@ -12,3 +12,4 @@ export { default as AddMedicineTemperatureInput } from "./add-medicine-temperatu
 
 export { default as BatchCard } from "./batch-card";
 export { default as Reading } from "./reading";
+export { default as BatchDetails } from "./batch-details";

@@ -7,7 +7,6 @@ import { FlatList, StyleSheet, View } from "react-native";
 import { useAppStore } from "store/app-store";
 import { Batch } from "types/batches";
 import { useContractRead } from "wagmi";
-import abi from "../abi/V2.json";
 import { web3Config } from "@config";
 import { allBatchesResponseMapper } from "@utils";
 
@@ -17,9 +16,8 @@ const AllBatchesScreen = forwardRef<FlatList<Batch>, {}>((_, ref) => {
 
   if (!user) return <Redirect href={"/register"} />;
   const manufacturerName = user.name;
-  const { isError, error, isLoading } = useContractRead({
-    abi,
-    address: web3Config.address,
+  const { isError, error, isLoading, isFetching } = useContractRead({
+    ...web3Config,
     functionName: "getAllBatchDetailsOfManufacturer",
     args: [manufacturerName],
     onSuccess(data: string[][]) {
@@ -31,7 +29,7 @@ const AllBatchesScreen = forwardRef<FlatList<Batch>, {}>((_, ref) => {
     console.log({ error });
   }
 
-  if (isLoading) return <Loader />;
+  if (isLoading || isFetching) return <Loader />;
   if (allBatches.length === 0)
     return <NoDataFound message={`No batches found...`} />;
 

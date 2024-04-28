@@ -22,21 +22,21 @@ const formSchema = z.object({
     .refine((range) => range.min <= range.max, {
       message: "Min must be less than or equal to Max",
     }),
-  chemicalData: z.array(
-    z.object({
-      name: z.string().min(1, {
-        message: "Name must not be empty, and Ratio must be a positive integer",
-      }),
-      ratio: z.number().int().positive(),
-    })
-  ),
+  // chemicalData: z.array(
+  //   z.object({
+  //     name: z.string().min(1, {
+  //       message: "Name must not be empty, and Ratio must be a positive integer",
+  //     }),
+  //     ratio: z.number().int().positive(),
+  //   })
+  // ),
 });
 
 const defaultValues: FormSchema = {
   medicineName: "",
   temperatureRange: { min: 0, max: 0 },
   humidityRange: { min: 0, max: 0 },
-  chemicalData: [{ name: "", ratio: 0 }],
+  // chemicalData: [{ name: "", ratio: 0 }],
 };
 
 const useAddMedicine = () => {
@@ -85,43 +85,43 @@ const useAddMedicine = () => {
   };
 
   const handleChemicalNameChange = (value: string, index: number) => {
-    setFormData((prev) => {
-      const newChemicalData = prev.chemicalData.map((data, prevIndex) => {
-        if (prevIndex !== index) return { ...data };
-        return { ...data, name: value };
-      });
-      return { ...prev, chemicalData: newChemicalData };
-    });
+    // setFormData((prev) => {
+    //   const newChemicalData = prev.chemicalData.map((data, prevIndex) => {
+    //     if (prevIndex !== index) return { ...data };
+    //     return { ...data, name: value };
+    //   });
+    //   return { ...prev, chemicalData: newChemicalData };
+    // });
   };
 
   const handleChemicalRatioChange = (value: string, index: number) => {
-    const valueAsNumber = +value;
-    setFormData((prev) => {
-      const newChemicalData = prev.chemicalData.map((data, prevIndex) => {
-        if (prevIndex !== index) return { ...data };
-        return { ...data, ratio: valueAsNumber };
-      });
-      return { ...prev, chemicalData: newChemicalData };
-    });
+    // const valueAsNumber = +value;
+    // setFormData((prev) => {
+    //   const newChemicalData = prev.chemicalData.map((data, prevIndex) => {
+    //     if (prevIndex !== index) return { ...data };
+    //     return { ...data, ratio: valueAsNumber };
+    //   });
+    //   return { ...prev, chemicalData: newChemicalData };
+    // });
   };
 
   // const handleInputChange = ()
 
   const handleRemoveChemicalData = (index: number) => {
-    if (formData.chemicalData.length === 1) return;
-    setFormData((prev) => {
-      const newChemicalData = prev.chemicalData.filter(
-        (_, prevIndex) => prevIndex !== index
-      );
-      return { ...prev, chemicalData: newChemicalData };
-    });
+    // if (formData.chemicalData.length === 1) return;
+    // setFormData((prev) => {
+    //   const newChemicalData = prev.chemicalData.filter(
+    //     (_, prevIndex) => prevIndex !== index
+    //   );
+    //   return { ...prev, chemicalData: newChemicalData };
+    // });
   };
 
   const handleAddChemicalData = () => {
-    setFormData((prev) => {
-      const newChemicalData = [...prev.chemicalData, { name: "", ratio: 0 }];
-      return { ...prev, chemicalData: newChemicalData };
-    });
+    // setFormData((prev) => {
+    //   const newChemicalData = [...prev.chemicalData, { name: "", ratio: 0 }];
+    //   return { ...prev, chemicalData: newChemicalData };
+    // });
   };
 
   const resetForm = () => {

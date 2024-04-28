@@ -1,9 +1,9 @@
 export type RegisterMedicineRequest = {
   medicineName: string;
-  chemicalData: {
-    name: string;
-    ratio: number;
-  }[];
+  // chemicalData: {
+  //   name: string;
+  //   ratio: number;
+  // }[];
   temperatureRange: {
     min: number;
     max: number;

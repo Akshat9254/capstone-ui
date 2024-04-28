@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Keyboard, StyleSheet, View } from "react-native";
 import { Button, HelperText, TextInput } from "react-native-paper";
 import { useContractWrite } from "wagmi";
-import abi from "../abi/V2.json";
 import { router } from "expo-router";
 import { useAppStore } from "store/app-store";
 import { web3Config } from "@config";
@@ -25,8 +24,7 @@ const RegisterInput = () => {
     error,
     write: registerManufacturer,
   } = useContractWrite({
-    abi,
-    address: web3Config.address,
+    ...web3Config,
     functionName: "registerManufacturer",
     onSuccess: () => {
       setUser({ name: username, role: "manufacturer" });
@@ -39,10 +37,10 @@ const RegisterInput = () => {
       setInputError("Username is empty !!!");
       return;
     }
-    registerManufacturer({
-      args: [username],
-    });
-    // setUser({ name: username, role: "manufacturer" });
+    // registerManufacturer({
+    //   args: [username],
+    // });
+    setUser({ name: username, role: "manufacturer" });
   };
 
   if (isError) {

@@ -1,15 +1,13 @@
-import { useEffect, useState } from "react";
-import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
+import { useState } from "react";
+import { KeyboardAvoidingView, StyleSheet } from "react-native";
 import { Button, DefaultTheme, TextInput } from "react-native-paper";
 import { Dropdown } from "react-native-element-dropdown";
 import { useAppStore } from "store/app-store";
-import { CustomSnackbar } from "@components";
-import abi from "../abi/V2.json";
+import { CustomSnackbar, Loader } from "@components";
 import { useContractRead, useContractWrite } from "wagmi";
 import { Redirect } from "expo-router";
 import { web3Config } from "@config";
 
-let batchNo = 3;
 const AddBatchScreen = () => {
   const [medicineNames, setMedicineNames] = useState<
     { label: string; value: string }[]
@@ -29,8 +27,7 @@ const AddBatchScreen = () => {
     setSnackbar({ visible: false, message: "" });
 
   const { isError, error } = useContractRead({
-    abi,
-    address: web3Config.address,
+    ...web3Config,
     functionName: "getAllMedicineNames",
     onSuccess(data: string[]) {
       setMedicineNames(data.map((item) => ({ label: item, value: item })));
@@ -45,8 +42,7 @@ const AddBatchScreen = () => {
     error: addBatchError,
     write: addBatch,
   } = useContractWrite({
-    abi,
-    address: web3Config.address,
+    ...web3Config,
     functionName: "addBatch",
     onSuccess: () => {
       setSnackbar({ visible: true, message: "batch added" });
@@ -76,7 +72,7 @@ const AddBatchScreen = () => {
     }
 
     addBatch({
-      args: [`b${batchNo++}`, medicine, manufacturerName, Date.now()],
+      args: [medicine, manufacturerName, Date.now()],
     });
   };
   return (

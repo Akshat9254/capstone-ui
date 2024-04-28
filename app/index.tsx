@@ -10,8 +10,16 @@ const HomeScreen = () => {
   const { disconnect } = useDisconnect();
 
   if (!user || !isConnected) return <Redirect href={"/register"} />;
+
   return (
     <View style={styles.container}>
+      {/* <Button
+        mode={"contained-tonal"}
+        onPress={() => addSensorData()}
+        labelStyle={{ letterSpacing: 0.101 }}
+      >
+        Add Sensor Data
+      </Button> */}
       <Button
         mode={"contained-tonal"}
         onPress={() => disconnect()}

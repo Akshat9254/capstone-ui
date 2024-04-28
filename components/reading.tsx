@@ -1,6 +1,5 @@
 import ReadingRow from "@components/reading-row";
-import { View } from "react-native";
-import { List, Tooltip } from "react-native-paper";
+import { List } from "react-native-paper";
 import { ReadingType } from "types/reading";
 
 type PropsType = {
@@ -11,7 +10,6 @@ type PropsType = {
 };
 
 const Reading = ({ reading, expanded, handlePress, index }: PropsType) => {
-  // console.log(reading);
   return (
     <List.Accordion
       title={`Reading ${index + 1}`}
@@ -33,10 +31,10 @@ const Reading = ({ reading, expanded, handlePress, index }: PropsType) => {
         unit="%"
         isInRange={reading.humidity.isInRange}
       />
-      <List.Subheader style={{ fontSize: 18, fontWeight: "700" }}>
+      {/* <List.Subheader style={{ fontSize: 18, fontWeight: "700" }}>
         Chemical Data
-      </List.Subheader>
-      {reading.chemicalData.map((data, index) => (
+      </List.Subheader> */}
+      {/* {reading.chemicalData.map((data, index) => (
         <ReadingRow
           key={index}
           name={data.name}
@@ -44,7 +42,7 @@ const Reading = ({ reading, expanded, handlePress, index }: PropsType) => {
           unit={"gm"}
           isInRange={data.isInRange}
         />
-      ))}
+      ))} */}
     </List.Accordion>
   );
 };

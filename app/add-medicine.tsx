@@ -1,11 +1,9 @@
 import { useAddMedicine } from "@hooks";
 import { useState } from "react";
-import { Button, Text } from "react-native-paper";
+import { Button } from "react-native-paper";
 import { useContractWrite } from "wagmi";
-import abi from "../abi/V2.json";
 import { Keyboard, ScrollView, StyleSheet, View } from "react-native";
 import {
-  AddMedicineChemicalRatioInput,
   AddMedicineHumidityInput,
   AddMedicineNameInput,
   AddMedicineTemperatureInput,
@@ -25,10 +23,6 @@ const AddMedicineScreen = () => {
     handleTemperatureMaxChange,
     handleHumidityMinChange,
     handleHumidityMaxChange,
-    handleChemicalNameChange,
-    handleChemicalRatioChange,
-    handleRemoveChemicalData,
-    handleAddChemicalData,
   } = useAddMedicine();
   const [snackbar, setSnackbar] = useState<{
     visible: boolean;
@@ -37,14 +31,12 @@ const AddMedicineScreen = () => {
 
   const {
     data,
-    isLoading,
     isError,
     isSuccess,
     error,
     write: registerMedicine,
   } = useContractWrite({
-    abi,
-    address: web3Config.address,
+    ...web3Config,
     functionName: "registerMedicine",
     onSuccess: () => {
       setSnackbar({ visible: true, message: "medicine registered" });
@@ -80,14 +72,11 @@ const AddMedicineScreen = () => {
       return;
     }
 
-    const { medicineName, chemicalData, temperatureRange, humidityRange } =
-      formData;
+    const { medicineName, temperatureRange, humidityRange } = formData;
     Keyboard.dismiss();
     registerMedicine({
       args: [
         medicineName,
-        chemicalData.map((data) => data.ratio),
-        chemicalData.map((data) => data.name),
         temperatureRange.min,
         temperatureRange.max,
         humidityRange.min,
@@ -119,13 +108,13 @@ const AddMedicineScreen = () => {
           errors={errors}
         />
         {/* chemical ratios */}
-        <AddMedicineChemicalRatioInput
+        {/* <AddMedicineChemicalRatioInput
           formData={formData}
           handleChemicalNameChange={handleChemicalNameChange}
           handleChemicalRatioChange={handleChemicalRatioChange}
           handleRemoveChemicalData={handleRemoveChemicalData}
           handleAddChemicalData={handleAddChemicalData}
-        />
+        /> */}
       </ScrollView>
       <Button mode={"contained"} onPress={onSubmit} style={styles.submitBtn}>
         Submit
