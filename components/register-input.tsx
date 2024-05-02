@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Keyboard, StyleSheet, View } from "react-native";
+import { Keyboard, Pressable, StyleSheet, View } from "react-native";
 import { Button, HelperText, TextInput } from "react-native-paper";
-import { useContractWrite } from "wagmi";
+import { useContractRead, useContractWrite } from "wagmi";
 import { router } from "expo-router";
 import { useAppStore } from "store/app-store";
 import { web3Config } from "@config";
+import { KeyboardAvoidingView } from "@components";
 
 const RegisterInput = () => {
   const [username, setUsername] = useState("");
@@ -31,6 +32,23 @@ const RegisterInput = () => {
     },
   });
 
+  const { refetch: isRegisteredUser, isLoading: checkRegisteredUserLoading } =
+    useContractRead({
+      ...web3Config,
+      functionName: "isRegisteredUser",
+      args: [username],
+      enabled: false,
+      onSuccess(data: boolean) {
+        if (data) {
+          setUser({ name: username, role: "manufacturer" });
+        } else {
+          registerManufacturer({
+            args: [username],
+          });
+        }
+      },
+    });
+
   const handleLoginAsManufacturer = () => {
     Keyboard.dismiss();
     if (!username) {
@@ -40,7 +58,26 @@ const RegisterInput = () => {
     // registerManufacturer({
     //   args: [username],
     // });
-    setUser({ name: username, role: "manufacturer" });
+    // setUser({ name: username, role: "manufacturer" });
+    isRegisteredUser();
+  };
+
+  const handleLoginAsDistributor = () => {
+    Keyboard.dismiss();
+    if (!username) {
+      setInputError("Username is empty !!!");
+      return;
+    }
+    setUser({ name: username, role: "distributor" });
+  };
+
+  const handleLoginAsAdmin = () => {
+    Keyboard.dismiss();
+    if (!username) {
+      setInputError("Username is empty !!!");
+      return;
+    }
+    setUser({ name: username, role: "admin" });
   };
 
   if (isError) {
@@ -68,13 +105,18 @@ const RegisterInput = () => {
         mode={"contained"}
         onPress={handleLoginAsManufacturer}
         style={styles.btn}
-        disabled={isLoading}
+        disabled={isLoading || checkRegisteredUserLoading}
       >
         Login as Manufacturer
       </Button>
-      <Button mode={"contained-tonal"} style={styles.btn}>
+      <Button
+        onPress={handleLoginAsDistributor}
+        mode={"contained-tonal"}
+        style={styles.btn}
+      >
         Login as Distributor
       </Button>
+      <Button onPress={handleLoginAsAdmin}>Login as Admin</Button>
     </View>
   );
 };
@@ -87,7 +129,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     width: "100%",
     alignItems: "center",
-    gap: 10,
+    gap: 5,
   },
   btn: {
     width: "80%",

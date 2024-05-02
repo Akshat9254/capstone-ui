@@ -10,7 +10,10 @@
   },
   "dependencies": {
     "@web3modal/wagmi-react-native": "^1.2.1",
+    "axios": "^1.6.8",
     "expo": "~49.0.23",
+    "expo-barcode-scanner": "~12.5.3",
+    "expo-camera": "~13.4.4",
     "expo-constants": "~14.4.2",
     "expo-linking": "~5.0.2",
     "expo-router": "^2.0.0",

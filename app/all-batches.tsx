@@ -1,5 +1,3 @@
-// import allBatches from "@data/batches";
-// import { getBatchesForManufacturer } from "api";
 import { BatchCard, Loader, NoDataFound } from "@components";
 import { Redirect } from "expo-router";
 import { forwardRef, useState } from "react";
@@ -21,7 +19,7 @@ const AllBatchesScreen = forwardRef<FlatList<Batch>, {}>((_, ref) => {
     functionName: "getAllBatchDetailsOfManufacturer",
     args: [manufacturerName],
     onSuccess(data: string[][]) {
-      setAllBatches(allBatchesResponseMapper(data));
+      setAllBatches(allBatchesResponseMapper(data).reverse());
     },
   });
 

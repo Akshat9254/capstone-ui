@@ -13,7 +13,7 @@ const KeyboardAvoidingWithKeyboardDismiss = ({
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       keyboardVerticalOffset={Platform.select({ ios: 80 })}
-      style={{ flex: 1 }}
+      style={{ flex: 1, width: "100%" }}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         {children}

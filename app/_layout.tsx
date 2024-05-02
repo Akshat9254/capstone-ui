@@ -1,7 +1,7 @@
 import "@walletconnect/react-native-compat";
 import { Stack } from "expo-router";
 import { PaperProvider } from "react-native-paper";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, LogBox } from "react-native";
 
 import { WagmiConfig } from "wagmi";
 import { sepolia } from "viem/chains";
@@ -13,6 +13,9 @@ import {
 
 // 1. Get projectId at https://cloud.walletconnect.com
 const projectId = "aa984146d287d0226df319ab7f5c8f46";
+
+// LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
+// LogBox.ignoreAllLogs(); //Ignore all log notifications
 
 // 2. Create config
 const metadata = {
@@ -54,6 +57,7 @@ const RootLayout = () => {
               name="all-batches"
               options={{ title: "All Batches" }}
             />
+            <Stack.Screen name="qr-scan" options={{ title: "QR Scan" }} />
           </Stack>
           <Web3Modal />
         </View>
